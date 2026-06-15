@@ -1,7 +1,7 @@
 #include <NewPing.h>
 
 int triggerPin = 42;
-int echoPin = 42;
+int echoPin = 41;
 int maxDistance = 400; // 최대 측정 거리 (cm)
 
 NewPing sensor(triggerPin, echoPin, maxDistance);
