@@ -62,11 +62,11 @@ void loop() {
     // Serial.print(frontBackDisplacementCm, 2);
     // Serial.println(" cm");
   }
-  Serial.println();
-  Serial.print("Ultrasonic distance: ");
+  // Serial.println();
+  // Serial.print("Ultrasonic distance: ");
   float distance = ultrasonicDistanceCm();
-  Serial.print(distance, 2);
-  Serial.println(" cm");
+  // Serial.print(distance, 2);
+  // Serial.println(" cm");
 
 
   if(!withinThreshold(distance) or abs(frontBackDisplacementCm) > 5.0f) {
