@@ -10,10 +10,15 @@ Adafruit_MPU6050 mpu;
 constexpr int I2C_SDA = 7;
 constexpr int I2C_SCL = 6;
 
+// Thresholds and constants for head tilt detection and front/back displacement estimation.
 constexpr float kTiltThresholdDeg = 20.0f;
 constexpr float kAccelerationDeadbandMps2 =0.60f;
+
 constexpr float kGravityMps2 = 9.80665f;
+// Short-term hold duration for front/back position when acceleration is below the deadband threshold. This helps to prevent jittery position updates when the user briefly relaxes their posture.
 constexpr unsigned long kShortTermHoldMs = 350;
+
+//velocity and position decay factors when acceleration is below the deadband threshold, to help stabilize the front/back position estimate over time.
 constexpr float kVelocityDecayFactor = 0.85f;
 constexpr float kPositionDecayFactor = 0.90f;
 
@@ -81,6 +86,7 @@ void resetFrontBackEstimate() {
 	lastFrontBackUpdateMs = millis();
 	lastSignificantAccelMs = lastFrontBackUpdateMs;
 }
+
 
 void setGravityReferenceFromAverage(float avgX, float avgY, float avgZ) {
 	const float magnitude = sqrtf((avgX * avgX) + (avgY * avgY) + (avgZ * avgZ));
